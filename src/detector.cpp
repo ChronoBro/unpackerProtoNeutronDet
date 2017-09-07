@@ -53,7 +53,7 @@ bool detector::unpackCsi(unsigned short *&point,int runno)
   //return true;
   */
   //  point +=3;
-  for (int iadc = 0;iadc<1;iadc++)
+  for (int iadc = 0;iadc<2;iadc++)
     {
 
       //check for ffff's
@@ -78,7 +78,7 @@ bool detector::unpackCsi(unsigned short *&point,int runno)
 
 	  // cout << "id " << id << endl;
 
-	  if(id < 2)
+	  if(id < 2 || id==32)
 	    {
 
 	      // float energy = calCsi->getEnergy(0,id,ienergy+ran->Rndm());
@@ -86,11 +86,13 @@ bool detector::unpackCsi(unsigned short *&point,int runno)
 	      DataE[NE].ienergy = ienergy;
 	      //DataE[NE].energy = energy;
 	      if(id<0)cout << id << " =id ERROR ienergy=  " << ienergy << endl;
-	      Histo->ECsI[id]->Fill(ienergy);
+
+	      if( id!=32 )
+		Histo->ECsI[id]->Fill(ienergy);
 	      
 
 
-	      float energy = 0; //FIX THIS!!!!!! KB
+	      //float energy = 0; //FIX THIS!!!!!! KB
 	      
 	      // int itele = (int)floor(DataE[NE].id/16);
 	      // int icsi = DataE[NE].id - 16*itele; 
@@ -105,6 +107,7 @@ bool detector::unpackCsi(unsigned short *&point,int runno)
 	      //cout << " " << Telescope[itele]->Csi.Order[0].energy << endl;
 	      
 	     NE++;
+	     //cout << NE << endl;
 	    }
 	      
 

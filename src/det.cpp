@@ -62,7 +62,52 @@ bool det::unpack(unsigned short *point,int runno)
 void det::analyze(int event)
 {
   //This is where you will analyze the events
+  
+  int channels = 3;
+  double relDif;
+  double left;
+  double right;
 
+  double gain = 2085./1740.;
+  gain = 1.;
+  double thresholdLeft  = 200.;
+  double thresholdRight  = 200.;
+  double time;
+  double offset = 50.;
+  //double E[2];
+  //double ID[2];
+  double t0 = 2600.; //channel of time at 0 position
+  double tSlope = 215.; //channels/ns
+  double tCal;
+  
+  for(int i=0;i<channels;i++)
+      {
+	if(Detector->DataE[i].id == 0)
+	  left = (double)Detector->DataE[i].ienergy*gain + offset;	    
+	else if (Detector->DataE[i].id == 1)
+	  right = (double)Detector->DataE[i].ienergy;
+	else if(Detector->DataE[i].id == 32)
+	  time = (double)Detector->DataE[i].ienergy;
+      }
+
+  tCal = (time-t0)/tSlope;
+  
+  Histo->EDet1_gain->Fill(right);
+  Histo->EDet0_gain->Fill(left);
+  Histo->timeDif->Fill(time);
+  Histo->gainMatch->Fill(left,right);
+  Histo->timeDifCalibrated->Fill(tCal);
+  
+  if(left > thresholdLeft && right > thresholdRight){
+  
+    
+    relDif = (left-right)/(left+right);    
+    // cout << Detector->DataE[0].ienergy << endl;
+    // cout << Detector->DataE[1].ienergy << endl;    
+    Histo->relDifference->Fill(relDif);
+    Histo->relVtime->Fill(relDif,tCal);
+  }
+  
 
 }
 

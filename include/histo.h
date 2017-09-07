@@ -43,6 +43,13 @@ class histo
 
 
   TH1I ** ECsI;
-
+  TH1D * relDifference;
+  TH1D * EDet0_gain;
+  TH1D * EDet1_gain;
+  TH1D * timeDif;
+  TH2D * relVtime;
+  TH2D * gainMatch;
+  TH1D * timeDifCalibrated;
+  
 };
 #endif

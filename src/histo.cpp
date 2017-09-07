@@ -19,6 +19,10 @@ histo::histo()
 
    //CsI 
   dirCsI = new TDirectoryFile("CsI","CsI");
+  EDet0_gain = new TH1D("EDet0_gain","EDet0_gain",1024,0,4095);
+  EDet1_gain = new TH1D("EDet1_gain","EDet1_gain",1024,0,4095);
+
+  
   dirCsIRaw = dirCsI->mkdir("CsIRaw","raw");
   
  
@@ -40,8 +44,11 @@ histo::histo()
 
     }
 
-
-
+  relDifference = new TH1D("relDif","relDif",200,-1,1);
+  timeDif = new TH1D("timeDif","timeDif",1024,0,4095);
+  relVtime = new TH2D("relVtime","relVtime",200,-1,1,200,-10,10);
+  gainMatch = new TH2D("gainMatch","gainMatch",1024,0,4095,1024,0,4095);
+  timeDifCalibrated = new TH1D("timeDifCalibrated","timeDifCalibrated",200,-10,10);
 
 }
 //*********************************************

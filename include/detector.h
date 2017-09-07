@@ -63,7 +63,7 @@ class detector
   calibrate * calCsI;
 
   int eventNum;
-
+  dataE DataE[56];
 
  private:
   TRandom * ran;
@@ -79,7 +79,7 @@ class detector
   caen ADC;
   TDC1190 *tdc;
 
-  dataE DataE[56];
+
   dataT DataT[56];
  
 

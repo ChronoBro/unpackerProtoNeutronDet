@@ -20,5 +20,5 @@ $(ALLOBJECTS): $(OBJDIR)%.o : $(SRCDIR)%.cpp
 
 
 clean:
-	rm -f *.o
+	rm -f $(OBJDIR)*.o
 

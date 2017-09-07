@@ -115,7 +115,7 @@ int main(int argc,char *argv[])
 	    outstring << "/data1/protoNeutronDetector/run-0"<<number;
 
 	  	    
-	  if (iExtra == 0)
+ 	  if (iExtra == 0)
 	    outstring<<"-00.evt";
 	  else 
 	    outstring<<"_"<<iExtra<<"-13328.evt";
@@ -144,7 +144,7 @@ int main(int argc,char *argv[])
 
          if (!evtfile)
            {
-	     cout << "could not open event file " << name.c_str() << endl;
+	     cout << "could not open event file" << endl;
              return 1;
            }
 
